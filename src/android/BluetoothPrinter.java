@@ -226,8 +226,8 @@ public class BluetoothPrinter extends CordovaPlugin {
 									if (b == delimiter) {
 										byte[] encodedBytes = new byte[readBufferPosition];
 										System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
-										/*
-										final String data = new String(encodedBytes, "US-ASCII");
+										
+										final String data = new String(encodedBytes, "windows-1252");
 										readBufferPosition = 0;
 										handler.post(new Runnable() {
 											public void run() {
@@ -258,7 +258,7 @@ public class BluetoothPrinter extends CordovaPlugin {
 	boolean printText(CallbackContext callbackContext, String msg) throws IOException {
 		try {
 
-			mmOutputStream.write(msg.getBytes());
+			mmOutputStream.write(msg.getBytes("windows-1252"));
 
 			// tell the user data were sent
 			//Log.d(LOG_TAG, "Data Sent");
